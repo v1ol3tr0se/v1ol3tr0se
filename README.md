@@ -48,6 +48,6 @@ she/her. i rice my arch setup more than i actually use it, i do ctfs and poke at
 
 <br>
 
-<sub>thanks for stopping by <picture><img align="middle" src="assets/heart.gif" width="13" alt="heart"></picture></sub>
+<sub>thanks for stopping by <sup><picture><img src="assets/heart.gif" width="9" alt="heart"></picture></sup></sub>
 
 </div>
