@@ -36,7 +36,7 @@ arch linux, hyprland with my own fork of dank material shell, neovim, fish + sta
 
 </div>
 
-<br>
+<sub><br></sub>
 
 <div align="center">
 
