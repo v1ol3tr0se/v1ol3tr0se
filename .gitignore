@@ -1,0 +1,11 @@
+*.log
+.env*
+*.bak*
+*.orig
+*.rej
+*~
+*.swp
+.directory
+*.aseprite
+*.ase
+*.psd
