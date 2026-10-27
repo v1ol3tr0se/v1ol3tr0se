@@ -1,8 +1,6 @@
 <div align="center">
 
-<img src="assets/window.gif" width="200" alt="a rainy window at night">
-
-<h1>hi, i'm eve 👋</h1>
+<h1><img src="assets/window.gif" width="200" alt="a rainy window at night"><br>hi, i'm eve 👋</h1>
 
 <p>software engineering student who writes mostly typescript<br>
 and makes her arch setup cozy instead of doing homework</p>
