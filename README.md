@@ -32,6 +32,12 @@ arch linux, hyprland with my own fork of dank material shell, neovim, fish + sta
 
 <div align="center">
 
+<img src="https://raw.githubusercontent.com/v1ol3tr0se/v1ol3tr0se/card/night.svg" alt="what kept me up this week: commits this week, the languages i write most and the repos i'm poking at">
+
+</div>
+
+<div align="center">
+
 <img src="assets/cat.gif" width="80" alt="a sleeping cat">
 
 <br>

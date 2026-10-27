@@ -1,0 +1,42 @@
+name: card
+
+on:
+  schedule:
+    - cron: "55 5 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: card
+  cancel-in-progress: true
+
+jobs:
+  card:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          sparse-checkout: .github/card.ts
+          sparse-checkout-cone-mode: false
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: "24"
+
+      - run: node .github/card.ts "$RUNNER_TEMP/night.svg"
+        env:
+          CARD_TOKEN: ${{ secrets.CARD_TOKEN }}
+          TZ: ${{ secrets.CARD_TZ }}
+
+      - run: |
+          git init -q -b card "$RUNNER_TEMP/out"
+          mv "$RUNNER_TEMP/night.svg" "$RUNNER_TEMP/out/"
+          cd "$RUNNER_TEMP/out"
+          git add night.svg
+          git -c user.name="github-actions[bot]" -c user.email="41898282+github-actions[bot]@users.noreply.github.com" commit -qm "refresh the card"
+          git push -fq "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" card
+        env:
+          GH_TOKEN: ${{ github.token }}
