@@ -11,9 +11,9 @@ and makes her arch setup cozy instead of doing homework</p>
 
 </div>
 
-<img align="right" width="140" src="assets/moon.gif" alt="a crescent moon"> she/her. i make discord bots, little tools and themes, dotfiles, and apps for my flipper zero (the one i keep flashing). if it has a config file i've probably lost a weekend to it, and i rice my arch setup more than i actually use it
+<img align="right" width="140" src="assets/moon.gif" alt="a crescent moon"> she/her. i make discord bots, little tools, themes and dotfiles, and i rice my arch setup more than i actually use it (if it has a config file i've probably lost a weekend to it)
 
-i do ctfs and poke at things i probably shouldn't. i'm told i look serious, i'm just thinking about how to break into something (ethically, obviously). i game when i should be asleep, and i run on not enough sleep and too much monster
+i'm told i look serious. i'm just thinking about how to break into something, which is why i do ctfs, poke at things i probably shouldn't, and keep flashing apps onto my flipper zero (ethically, obviously). the rest of the time i game when i should be asleep, running on not enough sleep and too much monster
 
 <br clear="all">
 
