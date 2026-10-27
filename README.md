@@ -11,9 +11,7 @@ and makes her arch setup cozy instead of doing homework</p>
 
 </div>
 
-<img align="right" width="140" src="assets/moon.gif" alt="a crescent moon"> she/her. i make discord bots, little tools, themes and dotfiles, and i rice my arch setup more than i actually use it (if it has a config file i've probably lost a weekend to it)
-
-i'm told i look serious. i'm just thinking about how to break into something, which is why i do ctfs, poke at things i probably shouldn't, and keep flashing apps onto my flipper zero (ethically, obviously). the rest of the time i game when i should be asleep, running on not enough sleep and too much monster
+<img align="right" width="140" src="assets/moon.gif" alt="a crescent moon"> she/her. i make discord bots, little tools and dotfiles, and rice my arch setup more than i actually use it. i'm told i look serious, i'm just thinking about how to break into something (ethically, obviously), so it's ctfs, flipper zero apps, and games when i should be asleep, all on too much monster
 
 <br clear="all">
 
@@ -25,9 +23,7 @@ i'm told i look serious. i'm just thinking about how to break into something, wh
 - small themes and tweaks for the apps i use
 - flipper zero apps, when i should be doing other things
 
-<br clear="all">
-
-<img align="right" width="128" src="assets/cocoa.gif" alt="a hot drink">
+<img align="right" width="128" src="assets/cocoa.gif" alt="a hot drink"><br clear="left">
 
 ### what i actually use
 arch linux, hyprland, neovim, fish. typescript + node is the daily driver<br>
