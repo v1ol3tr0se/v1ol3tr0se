@@ -7,11 +7,11 @@
 <p>software engineering student who writes mostly typescript<br>
 and makes her arch setup cozy instead of doing homework</p>
 
-<br>
+<img align="right" width="140" src="assets/moon.gif" alt="a crescent moon"><br>
 
 </div>
 
-<img align="right" width="140" src="assets/moon.gif" alt="a crescent moon"> she/her. i make discord bots, little tools and dotfiles, and rice my arch setup more than i actually use it. i'm told i look serious, i'm just thinking about how to break into something (ethically, obviously), so it's ctfs, flipper zero apps, and games when i should be asleep, all on too much monster
+she/her. i make discord bots, little tools and dotfiles, and rice my arch setup more than i actually use it. i'm told i look serious, i'm just thinking about how to break into something (ethically, obviously), so it's ctfs, flipper zero apps, and games when i should be asleep, all on too much monster
 
 <br clear="all">
 
@@ -26,8 +26,7 @@ and makes her arch setup cozy instead of doing homework</p>
 <img align="right" width="128" src="assets/cocoa.gif" alt="a hot drink"><br clear="left">
 
 ### what i actually use
-arch linux, hyprland, neovim, fish. typescript + node is the daily driver<br>
-i can also get around in c, c++, python, lua, bash, java, go, c#, and qml
+arch linux, hyprland with my own fork of dank material shell, neovim, fish + starship. typescript + node is the daily driver, with biome and yarn. i can also get around in c, c++, python, lua, bash, java, kotlin, go, c#, and qml
 
 <br clear="all">
 
