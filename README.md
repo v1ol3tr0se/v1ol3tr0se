@@ -27,7 +27,7 @@ i do ctfs and poke at things i probably shouldn't. i'm told i look serious, i'm 
 
 <br clear="all">
 
-<img align="right" width="110" src="assets/cocoa.gif" alt="a hot drink">
+<img align="right" width="128" src="assets/cocoa.gif" alt="a hot drink">
 
 ### what i actually use
 arch linux, hyprland, neovim, fish. typescript + node is the daily driver<br>
