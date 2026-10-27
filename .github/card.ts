@@ -1,9 +1,15 @@
 import { writeFileSync } from "node:fs";
 
-type Commit = { committedDate: string; author: { user: { login: string } | null } };
+type Commit = {
+	committedDate: string;
+	author: { user: { login: string } | null };
+};
 type Repo = {
 	name: string;
-	languages: { totalSize: number; edges: { size: number; node: { name: string } }[] };
+	languages: {
+		totalSize: number;
+		edges: { size: number; node: { name: string } }[];
+	};
 	defaultBranchRef: { target: { history?: { nodes: Commit[] } } } | null;
 };
 
@@ -76,12 +82,20 @@ async function load(): Promise<{ login: string; repos: Repo[] }> {
 	const res = await fetch("https://api.github.com/graphql", {
 		method: "POST",
 		headers: { authorization: `bearer ${token}` },
-		body: JSON.stringify({ query, variables: { since: new Date(Date.now() - 8 * DAY).toISOString() } }),
+		body: JSON.stringify({
+			query,
+			variables: { since: new Date(Date.now() - 8 * DAY).toISOString() },
+		}),
 	});
 	const body = await res.json();
 	if (!res.ok || body.errors)
-		throw new Error(`github said ${res.status} ${JSON.stringify(body.errors ?? body.message)}`);
-	return { login: body.data.viewer.login, repos: body.data.viewer.repositories.nodes };
+		throw new Error(
+			`github said ${res.status} ${JSON.stringify(body.errors ?? body.message)}`,
+		);
+	return {
+		login: body.data.viewer.login,
+		repos: body.data.viewer.repositories.nodes,
+	};
 }
 
 const { login, repos } = await load();
@@ -89,11 +103,19 @@ const day = (d: Date) => d.toLocaleDateString("en-CA");
 const today = new Date();
 const days = Array.from(
 	{ length: 7 },
-	(_, i) => new Date(today.getFullYear(), today.getMonth(), today.getDate() - 6 + i, 12),
+	(_, i) =>
+		new Date(
+			today.getFullYear(),
+			today.getMonth(),
+			today.getDate() - 6 + i,
+			12,
+		),
 );
 const perDay = new Map(days.map((d) => [day(d), 0]));
 const perRepo = repos.map((r) => {
-	const mine = (r.defaultBranchRef?.target.history?.nodes ?? []).filter((c) => c.author.user?.login === login);
+	const mine = (r.defaultBranchRef?.target.history?.nodes ?? []).filter(
+		(c) => c.author.user?.login === login,
+	);
 	let week = 0;
 	for (const c of mine) {
 		const k = day(new Date(c.committedDate));
@@ -114,13 +136,19 @@ repos.forEach((r, i) => {
 	const weight = weekly ? perRepo[i].week : 1;
 	if (!weight || !r.languages.totalSize) return;
 	for (const e of r.languages.edges)
-		share.set(e.node.name, (share.get(e.node.name) ?? 0) + (e.size / r.languages.totalSize) * weight);
+		share.set(
+			e.node.name,
+			(share.get(e.node.name) ?? 0) + (e.size / r.languages.totalSize) * weight,
+		);
 });
 const shareSum = [...share.values()].reduce((a, b) => a + b, 0) || 1;
 const langs = [...share]
 	.sort((a, b) => b[1] - a[1])
 	.slice(0, 4)
-	.map(([name, v]) => ({ name: name.toLowerCase(), pct: Math.round((v / shareSum) * 100) }));
+	.map(([name, v]) => ({
+		name: name.toLowerCase(),
+		pct: Math.round((v / shareSum) * 100),
+	}));
 
 const now = perRepo
 	.filter((r) => r.name !== login.toLowerCase())
@@ -131,12 +159,14 @@ const layers = new Map<string, string>();
 const box = (x: number, y: number, w: number, h: number, fill: string) =>
 	layers.set(fill, `${layers.get(fill) ?? ""}M${x} ${y}h${w}v${h}h-${w}z`);
 const glyph = (ch: string) => (FONT[ch] ?? FONT["?"]).split(" ");
-const measure = (s: string) => [...s].reduce((w, ch) => w + glyph(ch)[0].length + 1, -1);
+const measure = (s: string) =>
+	[...s].reduce((w, ch) => w + glyph(ch)[0].length + 1, -1);
 function text(s: string, x: number, y: number, fill: string) {
 	for (const ch of s) {
 		const rows = glyph(ch);
 		rows.forEach((row, dy) => {
-			for (const m of row.matchAll(/#+/g)) box(x + (m.index ?? 0), y + dy, m[0].length, 1, fill);
+			for (const m of row.matchAll(/#+/g))
+				box(x + (m.index ?? 0), y + dy, m[0].length, 1, fill);
 		});
 		x += rows[0].length + 1;
 	}
@@ -147,39 +177,61 @@ const P = 12;
 const TOP = 36;
 const ROW = 12;
 const ax = P;
-text("this week", ax, TOP, C.label);
 days.forEach((d, i) => {
 	const x = ax + i * 8;
 	const lit = Math.ceil((counts[i] / busiest) * 7);
-	for (let t = 0; t < 7; t++) box(x, TOP + 38 - t * 4, 5, 3, t < lit ? (i === 6 ? C.peach : C.label) : C.off);
+	for (let t = 0; t < 7; t++)
+		box(
+			x,
+			TOP + 38 - t * 4,
+			5,
+			3,
+			t < lit ? (i === 6 ? C.peach : C.label) : C.off,
+		);
 	const letter = "smtwtfs"[d.getDay()];
-	text(letter, x + Math.floor((5 - measure(letter)) / 2), TOP + 43, i === 6 ? C.peach : C.dim);
+	text(
+		letter,
+		x + Math.floor((5 - measure(letter)) / 2),
+		TOP + 43,
+		i === 6 ? C.peach : C.dim,
+	);
 });
-text(`${total} commit${total === 1 ? "" : "s"}`, ax, TOP + 58, C.text);
+const commits = `${total} commit${total === 1 ? "" : "s"}`;
+const aEnd = Math.max(ax + 53, ax + measure(commits));
+text(commits, ax, TOP + 58, C.text);
 
 const bx = ax + 53 + 22;
 const nameW = Math.max(...langs.map((l) => measure(l.name)));
-text("mostly writing", bx, TOP, C.label);
 let pctEnd = 0;
 langs.forEach((l, i) => {
 	const y = TOP + 14 + i * ROW;
 	text(l.name, bx, y, C.text);
 	const lit = Math.max(1, Math.round(l.pct / 10));
-	for (let t = 0; t < 10; t++) box(bx + nameW + 6 + t * 4, y + 2, 3, 5, t < lit ? RANK[i] : C.off);
-	pctEnd = Math.max(pctEnd, text(`${l.pct}%`, bx + nameW + 6 + 40 + 4, y, C.dim));
+	for (let t = 0; t < 10; t++)
+		box(bx + nameW + 6 + t * 4, y + 2, 3, 5, t < lit ? RANK[i] : C.off);
+	pctEnd = Math.max(
+		pctEnd,
+		text(`${l.pct}%`, bx + nameW + 6 + 40 + 4, y, C.dim),
+	);
 });
 
 const cx = pctEnd + 20;
-text("poking at", cx, TOP, C.label);
 const countX = cx + 8 + Math.max(...now.map((r) => measure(r.name))) + 10;
 let cursor = { x: 0, y: 0 };
+let cEnd = cx;
 now.forEach((r, i) => {
 	const y = TOP + 14 + i * ROW;
 	text(">", cx, y, i === 0 ? C.peach : C.dim);
 	const end = text(r.name, cx + 6, y, i === 0 ? C.text : C.dim);
 	if (i === 0) cursor = { x: end + 1, y: y + 2 };
-	if (r.week) text(String(r.week), countX, y, C.dim);
+	cEnd = Math.max(cEnd, r.week ? text(String(r.week), countX, y, C.dim) : end);
 });
+
+const label = (s: string, from: number, to: number) =>
+	text(s, from + Math.round((to - from - measure(s)) / 2), TOP, C.label);
+label("this week", ax, aEnd);
+label("mostly writing", bx, pctEnd);
+label("poking at", cx, cEnd);
 
 const W = Math.max(countX + 12, cx + 70) + P;
 const H = TOP + 58 + 9 + P;
@@ -221,7 +273,9 @@ const stars: [number, number, boolean][] = [
 const twinkles = stars
 	.map(([x, y, big], i) => {
 		const sx = Math.round(x);
-		const d = big ? `M${sx} ${y - 1}h1v3h-1zM${sx - 1} ${y}h3v1h-3z` : `M${sx} ${y}h1v1h-1z`;
+		const d = big
+			? `M${sx} ${y - 1}h1v3h-1zM${sx - 1} ${y}h3v1h-3z`
+			: `M${sx} ${y}h1v1h-1z`;
 		return `<path class="tw" style="animation-delay:-${(i * 1.7) % 5}s" fill="${big ? C.star : i % 3 ? C.text : C.dim}" d="${d}"/>`;
 	})
 	.join("");

@@ -36,6 +36,8 @@ arch linux, hyprland with my own fork of dank material shell, neovim, fish + sta
 
 </div>
 
+<br>
+
 <div align="center">
 
 <img src="assets/cat.gif" width="80" alt="a sleeping cat">
