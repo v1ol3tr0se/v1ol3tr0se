@@ -1,6 +1,7 @@
 <div align="center">
 
 <img src="assets/window.gif" width="200" alt="a rainy window at night">
+
 <h1>hi, i'm eve 👋</h1>
 
 <p>software engineering student who writes mostly typescript<br>
