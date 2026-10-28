@@ -28,13 +28,13 @@ arch linux, hyprland with my own fork of dank material shell, neovim, fish + sta
 
 <br clear="all">
 
+<sub><br></sub>
+
 <div align="center">
 
 <img src="https://raw.githubusercontent.com/v1ol3tr0se/v1ol3tr0se/card/night.svg" alt="what kept me up this week: commits this week, the languages i write most and the repos i'm poking at">
 
 </div>
-
-<sub><br></sub>
 
 <div align="center">
 
