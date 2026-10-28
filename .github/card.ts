@@ -72,7 +72,7 @@ const C = {
 	peach: "#efcbc1",
 	star: "#fefefe",
 };
-const RANK = [C.peach, "#b3a3d9", "#9b8ac4", "#8e6c8a"];
+const RANK = [C.peach, "#b3a3d9", "#9b8ac4", "#8e6c8a", "#735a7f"];
 const DAY = 864e5;
 
 async function load(): Promise<{ login: string; repos: Repo[] }> {
@@ -144,7 +144,7 @@ repos.forEach((r, i) => {
 const shareSum = [...share.values()].reduce((a, b) => a + b, 0) || 1;
 const langs = [...share]
 	.sort((a, b) => b[1] - a[1])
-	.slice(0, 4)
+	.slice(0, 5)
 	.map(([name, v]) => ({
 		name: name.toLowerCase(),
 		pct: Math.round((v / shareSum) * 100),
@@ -153,7 +153,7 @@ const langs = [...share]
 const now = perRepo
 	.filter((r) => r.name !== login.toLowerCase())
 	.sort((a, b) => b.week - a.week)
-	.slice(0, 3);
+	.slice(0, 5);
 
 const layers = new Map<string, string>();
 const box = (x: number, y: number, w: number, h: number, fill: string) =>
@@ -175,7 +175,7 @@ function text(s: string, x: number, y: number, fill: string) {
 
 const P = 12;
 const TOP = 36;
-const ROW = 12;
+const ROW = 11;
 const ax = P;
 days.forEach((d, i) => {
 	const x = ax + i * 8;
@@ -250,9 +250,9 @@ const stars: [number, number, boolean][] = [
 	[W * 0.7, 18, false],
 	[W - 26, 9, true],
 	[W - 46, 20, false],
-	[W - 30, H - 22, true],
-	[W - 58, H - 14, false],
-	[W - 16, H - 12, false],
+	[W - 30, H - 7, true],
+	[W - 58, H - 6, false],
+	[W - 16, H - 9, false],
 	[P + 6, 7, false],
 	[P + 28, 14, true],
 	[P + 56, 6, false],
@@ -260,14 +260,13 @@ const stars: [number, number, boolean][] = [
 	[titleEnd + 66, 7, false],
 	[W - 72, 14, false],
 	[W - 10, 21, false],
-	[W * 0.33, H - 12, false],
+	[W * 0.33, H - 9, false],
 	[W * 0.41, H - 8, true],
 	[W * 0.48, H - 9, false],
-	[W * 0.56, H - 17, false],
+	[W * 0.56, H - 6, false],
 	[W * 0.63, H - 8, true],
-	[W - 84, H - 33, false],
-	[W - 44, H - 40, false],
-	[W - 18, H - 30, true],
+	[W - 84, H - 9, false],
+	[W - 44, H - 10, false],
 	[P + 82, H - 10, false],
 ];
 const twinkles = stars
@@ -286,8 +285,6 @@ const lanes: [number, number][] = [
 	[0.34, 10],
 	[0.62, 4],
 	[0.74, 16],
-	[0.28, H - 18],
-	[0.5, H - 20],
 ];
 let seed = Number(day(today).replaceAll("-", ""));
 const pick = () => {
