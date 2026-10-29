@@ -36,10 +36,7 @@ arch linux, hyprland with my own fork of dank material shell, neovim, fish + sta
 
 <div align="center">
 
-<picture><img src="assets/cat.svg" width="80" alt="a sleeping cat"></picture>
-
-<br>
-
-<sub>thanks for stopping by <picture><img align="middle" src="assets/heart.svg" width="13" alt="heart"></picture></sub>
+<picture><img src="assets/cat.svg" width="80" alt="a sleeping cat"></picture><br>
+<sup>thanks for stopping by <picture><img align="middle" src="assets/heart.svg" width="13" alt="heart"></picture></sup>
 
 </div>
