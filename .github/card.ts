@@ -174,7 +174,7 @@ function text(s: string, x: number, y: number, fill: string) {
 }
 
 const P = 12;
-const TOP = 36;
+const TOP = 33;
 const ROW = 11;
 const ax = P;
 days.forEach((d, i) => {
@@ -238,7 +238,7 @@ const H = TOP + 58 + 9 + P;
 
 const heading = "what kept me up";
 const titleStart = Math.round((W - measure(heading)) / 2);
-text(heading, titleStart, 13, C.text);
+text(heading, titleStart, 14, C.text);
 const titleEnd = titleStart + measure(heading);
 const stars: [number, number, boolean][] = [
 	[titleStart - 18, 9, true],
